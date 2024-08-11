@@ -1,0 +1,28 @@
+﻿<Window x:Class="CryptoTestTask.CurrencyConverter"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CryptoTestTask"
+        mc:Ignorable="d"
+        Title="Конвертація криптовалют" Height="350" Width="525">
+
+
+    <Grid Style="{DynamicResource MainGridStyle}">
+        <StackPanel Margin="10">
+            <TextBlock Text="Виберіть початкову валюту:" FontSize="16" Style="{DynamicResource CustomTextBlockStyle}"/>
+            <ComboBox ItemsSource="{Binding Coins}" DisplayMemberPath="Name" SelectedItem="{Binding FromCoin}" />
+
+            <TextBlock Text="Виберіть цільову валюту:" FontSize="16" Margin="0,10,0,0" Style="{DynamicResource CustomTextBlockStyle}"/>
+            <ComboBox ItemsSource="{Binding Coins}" DisplayMemberPath="Name" SelectedItem="{Binding ToCoin}" />
+
+            <TextBlock Text="Кількість для конвертації:" FontSize="16" Margin="0,10,0,0" Style="{DynamicResource CustomTextBlockStyle}"/>
+            <TextBox Text="{Binding Amount}" />
+
+            <Button Content="Конвертувати" FontSize="16" Margin="0,10,0,0" Click="ConvertButton_Click" Style="{DynamicResource CustomButtonStyle}"/>
+
+            <TextBlock Text="Результат:" FontSize="16" Margin="0,10,0,0" Style="{DynamicResource CustomTextBlockStyle}"/>
+            <TextBlock Text="{Binding Result}" FontSize="16" Style="{DynamicResource CustomTextBlockStyle}"/>
+        </StackPanel>
+    </Grid>
+</Window>

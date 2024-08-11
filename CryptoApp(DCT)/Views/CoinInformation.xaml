@@ -1,0 +1,32 @@
+﻿<Window x:Class="CryptoTestTask.CoinInformation"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CryptoTestTask"
+        mc:Ignorable="d"
+        Title="Інформація про монету" Height="450" Width="800" MinHeight="450" MinWidth="800"
+        DataContext="{Binding RelativeSource={RelativeSource Self}}">
+
+    <Grid Background="LightGray">
+        <Border Margin="20" Background="White" CornerRadius="10" Padding="20">
+            <StackPanel>
+                <TextBlock Text="Назва:" FontSize="16" FontWeight="Bold"/>
+                <TextBlock Text="{Binding SelectedCoin.Explorer}" FontSize="16" Margin="0,5,0,20"/>
+                
+                <TextBlock Text="Обсяг (24 години):" FontSize="16" FontWeight="Bold"/>
+                <TextBlock Text="{Binding SelectedCoin.VolumeUsd24Hr}" FontSize="16" Margin="0,5,0,20"/>
+
+                <TextBlock Text="Зміна ціни (24 години):" FontSize="16" FontWeight="Bold"/>
+                <TextBlock Text="{Binding SelectedCoin.ChangePercent24Hr, StringFormat={}{0:F2}%}" FontSize="16" Margin="0,5,0,20"/>
+
+                <TextBlock Text="Посилання:" FontSize="16" FontWeight="Bold"/>
+                <TextBlock FontSize="16" Margin="0,5,0,20">
+                    <Hyperlink NavigateUri="{Binding SelectedCoin.Explorer}" RequestNavigate="Hyperlink_RequestNavigate">
+                        <TextBlock Text="{Binding SelectedCoin.Explorer}" />
+                    </Hyperlink>
+                </TextBlock>
+            </StackPanel>
+        </Border>
+    </Grid>
+</Window>

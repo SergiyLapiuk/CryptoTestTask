@@ -1,0 +1,65 @@
+﻿<Window x:Class="CryptoTestTask.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CryptoTestTask"
+        mc:Ignorable="d"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        Title="Головна сторінка" Height="623" Width="1043" MinHeight="623" MinWidth="1043">
+
+
+    <Grid Style="{DynamicResource MainGridStyle}">
+        <Border Background="#4627" BorderBrush="#462a" BorderThickness="1" Padding="10" Margin="0,0,0,506" VerticalAlignment="Top">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2*"/>
+                    <ColumnDefinition Width="2*"/>
+                    <ColumnDefinition Width="2*"/>
+                    <ColumnDefinition Width="2*"/>
+                </Grid.ColumnDefinitions>
+
+                <Button x:Name="ConvertButton" Content="Конвертація валют" VerticalAlignment="Center" Height="60" Cursor="Hand" FontSize="20" FontWeight="Bold" Grid.Column="0" Click="ConvertButton_Click"  Style= "{DynamicResource CustomButtonStyle}"/>
+                <Button x:Name="MainButton" Content="На головну" VerticalAlignment="Center" Height="60" Cursor="Hand" FontSize="20" FontWeight="Bold" Grid.Column="1" Style= "{DynamicResource CustomButtonStyle}"/>
+                <Button x:Name="FindButton" Content="Пошук валюти" VerticalAlignment="Center" Height="60" Cursor="Hand" FontSize="20" FontWeight="Bold" Grid.Column="2" Click="FindButton_Click" Style= "{DynamicResource CustomButtonStyle}"/>
+                <Button x:Name="SettingsButton" Content="Налаштування" VerticalAlignment="Center" Height="60" Cursor="Hand" FontSize="20" FontWeight="Bold" Grid.Column="3" Click="SettingsButton_Click" Style= "{DynamicResource CustomButtonStyle}"/>
+            </Grid>
+        </Border>
+
+        <Border Margin="20,95,20,425" Background="White" CornerRadius="30" Padding="20">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="334"></ColumnDefinition>
+                    <ColumnDefinition Width="334"></ColumnDefinition>
+                    <ColumnDefinition Width="334"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <TextBlock FontSize="20" Text="Символ"  Grid.Column="0" />
+                <TextBlock FontSize="20" Text="Назва" Grid.Column="1" />
+                <TextBlock FontSize="20" Text="Ціна у доларах" Grid.Column="2" />
+            </Grid>
+        </Border>
+
+        <Border Background="White" Margin="20,166,20,20" CornerRadius="30">
+            <ListBox x:Name="ListBoxCoins" ItemsSource="{Binding Coins}" SelectedItem="{Binding SelectedCoin}" >
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Margin="5" Orientation="Horizontal">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="334"></ColumnDefinition>
+                                    <ColumnDefinition Width="334"></ColumnDefinition>
+                                    <ColumnDefinition Width="334"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock FontSize="18" Text="{Binding Path=Symbol}"  Grid.Column="0" />
+                                <TextBlock FontSize="18" Text="{Binding Path=Name}" Grid.Column="1" />
+                                <TextBlock FontSize="18" Text="{Binding Path=PriceUsd}" Grid.Column="2" />
+                            </Grid>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </Border>
+
+        <Border BorderBrush="Black" BorderThickness="1"/>
+    </Grid>
+</Window>
