@@ -25,7 +25,6 @@ namespace CryptoTestTask.Services
         public async Task<List<Asset>> GetCoinsAsync()
         {
             var request = new RestRequest();
-            request.AddHeader("Authorization", "Bearer 935bf130-e617-4926-8b3d-6469e88ff2d3");
 
             var response = await _client.ExecuteAsync(request);
             if (!response.IsSuccessful)
