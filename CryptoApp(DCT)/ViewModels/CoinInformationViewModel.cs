@@ -1,13 +1,9 @@
-﻿using OxyPlot;
-using OxyPlot.Series;
+﻿using CryptoTestTask.Commands;
 using CryptoTestTask.Models;
-using CryptoTestTask.Services; 
+using CryptoTestTask.Services;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Windows;
-using OxyPlot.Axes;
+using System.Windows.Input;
 
 namespace CryptoTestTask.ViewModels
 {
@@ -23,12 +19,22 @@ namespace CryptoTestTask.ViewModels
         }
 
         private readonly ICryptoApiService _cryptoApiService;
+        private readonly MainWindowViewModel _mainViewModel;
 
-        public CoinInformationViewModel(Asset coin, ICryptoApiService cryptoApiService)
+        public ICommand NavigateToMainPageCommand { get; }
+
+        public CoinInformationViewModel(Asset coin, ICryptoApiService cryptoApiService, MainWindowViewModel mainViewModel)
         {
             SelectedCoin = coin;
             _cryptoApiService = cryptoApiService ?? throw new ArgumentNullException(nameof(cryptoApiService));
+            _mainViewModel = mainViewModel ?? throw new ArgumentNullException(nameof(mainViewModel));
+
+            NavigateToMainPageCommand = new RelayCommand(_ => NavigateToMainPage());
         }
 
+        private void NavigateToMainPage()
+        {
+            _mainViewModel.CurrentPage = new MainPage(_mainViewModel);
+        }
     }
 }

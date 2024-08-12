@@ -1,38 +1,35 @@
-﻿using CryptoTestTask.Services;
+﻿using System.Windows;
+using CryptoTestTask.Services;
 using CryptoTestTask.ViewModels;
-using System.Windows;
 
 namespace CryptoTestTask
 {
     public partial class MainWindow : Window
     {
-        private readonly ICryptoApiService _cryptoApiService;
+        private MainWindowViewModel _viewModel;
 
         public MainWindow()
         {
             InitializeComponent();
+            var cryptoApiService = new CryptoApiService();
+            _viewModel = new MainWindowViewModel(cryptoApiService);
+            DataContext = _viewModel;
 
-            _cryptoApiService = new CryptoApiService();
-            DataContext = new MainWindowViewModel(_cryptoApiService);
+            _viewModel.PropertyChanged += ViewModel_PropertyChanged;
+
+            ViewModel_PropertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(nameof(MainWindowViewModel.CurrentPage)));
+
         }
 
-        private void FindButton_Click(object sender, RoutedEventArgs e)
+        private void ViewModel_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
-            var findViewModel = new FindCryptoCoinViewModel((MainWindowViewModel)DataContext);
-            var findWindow = new FindCryptoCoin { DataContext = findViewModel };
-            findWindow.Show();
+            if (e.PropertyName == nameof(MainWindowViewModel.CurrentPage))
+            {
+                if (_viewModel.CurrentPage != null)
+                {
+                    MainFrame.Navigate(_viewModel.CurrentPage);
+                }
+            }
         }
-
-        private void ConvertButton_Click(object sender, RoutedEventArgs e)
-        {
-            var converterWindow = new CurrencyConverter((DataContext as MainWindowViewModel).Coins);
-            converterWindow.Show();
-        }
-        private void SettingsButton_Click(object sender, RoutedEventArgs e)
-        {
-            var settingsWindow = new Settings();
-            settingsWindow.Show();
-        }
-
     }
 }

@@ -1,5 +1,9 @@
-﻿using System;
+﻿using CryptoTestTask.Models;
+using CryptoTestTask.Services;
+using CryptoTestTask.ViewModels;
+using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,15 +14,19 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
+
 
 namespace CryptoTestTask
 {
-    public partial class FindCryptoCoin : Page
+    public partial class MainPage : Page
     {
-        public FindCryptoCoin()
+
+        public MainPage(MainWindowViewModel viewModel)
         {
             InitializeComponent();
+            DataContext = viewModel;
         }
     }
 }

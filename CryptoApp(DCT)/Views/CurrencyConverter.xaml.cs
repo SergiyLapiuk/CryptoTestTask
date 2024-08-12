@@ -1,11 +1,11 @@
 ﻿using CryptoTestTask.Models;
 using CryptoTestTask.ViewModels;
 using System.Collections.ObjectModel;
-using System.Windows;
+using System.Windows.Controls;
 
 namespace CryptoTestTask
 {
-    public partial class CurrencyConverter : Window
+    public partial class CurrencyConverter : Page
     {
         private CurrencyConverterViewModel _viewModel;
 
@@ -16,7 +16,7 @@ namespace CryptoTestTask
             DataContext = _viewModel;
         }
 
-        private void ConvertButton_Click(object sender, RoutedEventArgs e)
+        private void ConvertButton_Click(object sender, System.Windows.RoutedEventArgs e)
         {
             _viewModel.Convert();
         }

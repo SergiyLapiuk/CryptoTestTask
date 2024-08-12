@@ -7,6 +7,8 @@ using System.Threading.Tasks;
 using System.Windows.Data;
 using System.Windows;
 using CryptoTestTask.Models;
+using CryptoTestTask.Commands;
+using System.Windows.Input;
 
 namespace CryptoTestTask.ViewModels
 {
@@ -30,10 +32,18 @@ namespace CryptoTestTask.ViewModels
             set { SetValue(FilterTextProperty, value); }
         }
 
+        public ICommand NavigateToMainPageCommand { get; }
+
+        private readonly MainWindowViewModel _mainViewModel;
+
         public FindCryptoCoinViewModel(MainWindowViewModel mainViewModel)
         {
+            _mainViewModel = mainViewModel;
+
             FilteredCoin = CollectionViewSource.GetDefaultView(mainViewModel.Coins);
             FilteredCoin.Filter = FilterByCoin;
+
+            NavigateToMainPageCommand = new RelayCommand(_ => NavigateToMainPage());
         }
 
         private static void FilterText_Changed(DependencyObject d, DependencyPropertyChangedEventArgs e)
@@ -55,6 +65,11 @@ namespace CryptoTestTask.ViewModels
                 return false;
             }
             return true;
+        }
+
+        private void NavigateToMainPage()
+        {
+            _mainViewModel.CurrentPage = new MainPage(_mainViewModel);
         }
     }
 }

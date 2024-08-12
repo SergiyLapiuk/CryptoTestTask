@@ -6,12 +6,11 @@ using System.Windows.Controls;
 
 namespace CryptoTestTask
 {
-    public partial class Settings : Window
+    public partial class Settings : Page
     {
         public Settings()
         {
             InitializeComponent();
-
         }
 
         private void SwitchToWhiteTheme()
@@ -51,8 +50,6 @@ namespace CryptoTestTask
                 SwitchToWhiteTheme();
             }
         }
-
     }
-
 }
 
