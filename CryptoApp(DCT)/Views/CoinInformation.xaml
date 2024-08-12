@@ -7,20 +7,6 @@
       Title="Інформація про валюту">
 
     <Grid>
-        <Grid Height="61" VerticalAlignment="Top">
-            <Button x:Name="MainButton" 
-                    Content="На головну" 
-                    HorizontalAlignment="Center" 
-                    VerticalAlignment="Center" 
-                    RenderTransformOrigin="0.747,-0.263" 
-                    Height="60" 
-                    Width="150" 
-                    Cursor="Hand" 
-                    FontSize="20" 
-                    Command="{Binding NavigateToMainPageCommand}" 
-                    Style="{DynamicResource CustomButtonStyle}"/>
-        </Grid>
-
         <Border Margin="20,80,20,20" Background="White" CornerRadius="10" Padding="20">
             <StackPanel>
                 <TextBlock Text="Назва:" FontSize="16" FontWeight="Bold"/>

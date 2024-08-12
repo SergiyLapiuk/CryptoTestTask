@@ -8,14 +8,7 @@
       xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
       Title="Пошук валюти" Height="623" Width="1043" MinHeight="623" MinWidth="1043">
 
-    <Grid Style="{DynamicResource MainGridStyle}">
-        <Border Background="LightBlue" BorderBrush="Transparent" BorderThickness="1" Padding="10" Margin="0,0,0,506" VerticalAlignment="Top">
-            <StackPanel>
-                <Grid Height="61">
-                    <Button x:Name="MainButton" Content="На головну" HorizontalAlignment="Center" VerticalAlignment="Center" RenderTransformOrigin="0.747,-0.263" Height="60" Width="150" Cursor="Hand" FontSize="20" FontWeight="Bold" Command="{Binding NavigateToMainPageCommand}" Style="{DynamicResource CustomButtonStyle}"/>
-                </Grid>
-            </StackPanel>
-        </Border>
+    <Grid>
 
         <Border Margin="20,95,20,425" Background="Transparent" BorderBrush="Transparent" BorderThickness="1" CornerRadius="30">
             <TextBox TextWrapping="Wrap" Text="{Binding FilterText, UpdateSourceTrigger=PropertyChanged}" Cursor="Arrow" FontSize="18" Margin="20,10,20,20" Style="{DynamicResource ComboTextBoxStyle}" materialDesign:HintAssist.Hint="Введіть назву токена або його символ, наприклад: Bitcoin"/>
