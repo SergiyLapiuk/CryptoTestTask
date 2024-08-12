@@ -1,63 +1,47 @@
-﻿//using System;
-//using System.Collections.Generic;
-//using System.ComponentModel;
-//using System.Linq;
-//using System.Text;
-//using System.Threading.Tasks;
-//using System.Windows;
+﻿using System;
+using System.Linq;
+using System.Windows;
 
-//namespace CryptoTestTask.ViewModels
-//{
-//    public class SettingsViewModel : INotifyPropertyChanged
-//    {
-//        private bool isDarkTheme;
+namespace CryptoTestTask.ViewModels
+{
+    public class SettingsViewModel
+    {
+        public void SwitchTheme()
+        {
+            if (Application.Current.Resources.MergedDictionaries.Any(d => d.Source.ToString() == "Themes/LightTheme.xaml"))
+            {
+                var whiteTheme = Application.Current.Resources.MergedDictionaries.FirstOrDefault(d => d.Source.ToString() == "Themes/LightTheme.xaml");
+                if (whiteTheme != null)
+                {
+                    Application.Current.Resources.MergedDictionaries.Remove(whiteTheme);
+                }
+                SwitchToDarkTheme();
+            }
+            else
+            {
+                var darkTheme = Application.Current.Resources.MergedDictionaries.FirstOrDefault(d => d.Source.ToString() == "Themes/DarkTheme.xaml");
+                if (darkTheme != null)
+                {
+                    Application.Current.Resources.MergedDictionaries.Remove(darkTheme);
+                }
+                SwitchToWhiteTheme();
+            }
+        }
 
-//        public bool IsDarkTheme
-//        {
-//            get { return isDarkTheme; }
-//            set
-//            {
-//                if (isDarkTheme != value)
-//                {
-//                    isDarkTheme = value;
-//                    OnPropertyChanged(nameof(IsDarkTheme));
-//                    ApplyTheme();
-//                }
-//            }
-//        }
+        private void SwitchToWhiteTheme()
+        {
+            Application.Current.Resources.MergedDictionaries.Add(new ResourceDictionary
+            {
+                Source = new Uri("Themes/LightTheme.xaml", UriKind.Relative)
+            });
+        }
 
-//        //public SettingsViewModel()
-//        //{
-//        //    isDarkTheme = Properties.Settings.Default.CryptoTestTask;
-//        //    ApplyTheme();
-//        //}
-
-//        //private void ApplyTheme()
-//        //{
-//        //    var app = Application.Current;
-//        //    var uri = new Uri(isDarkTheme ? "Themes/DarkTheme.xaml" : "Themes/LightTheme.xaml", UriKind.Relative);
-
-//        //    // Оновлюємо ресурсний словник додатку
-//        //    app.Resources.MergedDictionaries.Clear();
-//        //    app.Resources.MergedDictionaries.Add(new ResourceDictionary() { Source = uri });
-
-//        //    // Оновлюємо всі відкриті вікна
-//        //    foreach (Window window in app.Windows)
-//        //    {
-//        //        window.Resources.MergedDictionaries.Clear();
-//        //        window.Resources.MergedDictionaries.Add(new ResourceDictionary() { Source = uri });
-//        //    }
-
-//        //    Properties.Settings.Default.CryptoTestTask = isDarkTheme;
-//        //    Properties.Settings.Default.Save();
-//        //}
-
-
-//        public event PropertyChangedEventHandler PropertyChanged;
-
-//        protected void OnPropertyChanged(string propertyName)
-//        {
-//            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-//        }
-//    }
-//}
+        private void SwitchToDarkTheme()
+        {
+            Application.Current.Resources.MergedDictionaries.Add(new ResourceDictionary
+            {
+                Source = new Uri("Themes/DarkTheme.xaml", UriKind.Relative)
+            });
+        }
+    }
+}

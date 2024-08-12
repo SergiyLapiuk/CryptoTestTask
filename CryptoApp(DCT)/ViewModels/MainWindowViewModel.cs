@@ -135,7 +135,7 @@ namespace CryptoTestTask.ViewModels
                     CurrentPage = new Settings();
                     break;
                 default:
-                    CurrentPage = new MainPage(this); // Default to main page
+                    CurrentPage = new MainPage(this); 
                     break;
             }
         }

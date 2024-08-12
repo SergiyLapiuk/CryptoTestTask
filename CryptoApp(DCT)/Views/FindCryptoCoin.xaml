@@ -32,9 +32,9 @@
                                     <ColumnDefinition Width="334" />
                                     <ColumnDefinition Width="334" />
                                 </Grid.ColumnDefinitions>
-                                <TextBlock FontSize="18" Text="{Binding Path=Symbol}" Grid.Column="0" Style="{DynamicResource CustomTextBlockStyle}" />
-                                <TextBlock FontSize="18" Text="{Binding Path=Name}" Grid.Column="1" Style="{DynamicResource CustomTextBlockStyle}" />
-                                <TextBlock FontSize="18" Text="{Binding Path=PriceUsd}" Grid.Column="2" Style="{DynamicResource CustomTextBlockStyle}" />
+                                <TextBlock FontSize="18" Text="{Binding Path=Symbol}" Grid.Column="0" />
+                                <TextBlock FontSize="18" Text="{Binding Path=Name}" Grid.Column="1"/>
+                                <TextBlock FontSize="18" Text="{Binding Path=PriceUsd}" Grid.Column="2"/>
                             </Grid>
                         </StackPanel>
                     </DataTemplate>

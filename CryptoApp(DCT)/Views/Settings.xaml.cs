@@ -1,55 +1,39 @@
 ﻿using CryptoTestTask.ViewModels;
-using System.Linq;
-using System;
+using MahApps.Metro.Controls;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 
 namespace CryptoTestTask
 {
     public partial class Settings : Page
     {
+        private readonly SettingsViewModel _viewModel;
+
         public Settings()
         {
             InitializeComponent();
-        }
-
-        private void SwitchToWhiteTheme()
-        {
-            Application.Current.Resources.MergedDictionaries.Add(new ResourceDictionary
-            {
-                Source = new Uri("Themes/LightTheme.xaml", UriKind.Relative)
-            });
-        }
-
-        private void SwitchToDarkTheme()
-        {
-            Application.Current.Resources.MergedDictionaries.Add(new ResourceDictionary
-            {
-                Source = new Uri("Themes/DarkTheme.xaml", UriKind.Relative)
-            });
+            _viewModel = new SettingsViewModel();
         }
 
         private void SwitchThemeButton_Click(object sender, RoutedEventArgs e)
         {
-            if (Application.Current.Resources.MergedDictionaries.Any(d => d.Source.ToString() == "Themes/LightTheme.xaml"))
+            var toggleButton = sender as ToggleButton;
+            if (toggleButton != null)
             {
-                var whiteTheme = Application.Current.Resources.MergedDictionaries.FirstOrDefault(d => d.Source.ToString() == "Themes/LightTheme.xaml");
-                if (whiteTheme != null)
+                if (toggleButton.IsChecked == true)
                 {
-                    Application.Current.Resources.MergedDictionaries.Remove(whiteTheme);
+                    _viewModel.SwitchTheme();
+                    toggleButton.Content = "Light Theme";
                 }
-                SwitchToDarkTheme();
-            }
-            else
-            {
-                var darkTheme = Application.Current.Resources.MergedDictionaries.FirstOrDefault(d => d.Source.ToString() == "Themes/DarkTheme.xaml");
-                if (darkTheme != null)
+                else
                 {
-                    Application.Current.Resources.MergedDictionaries.Remove(darkTheme);
+                    _viewModel.SwitchTheme();
+                    toggleButton.Content = "Dark Theme";
                 }
-                SwitchToWhiteTheme();
             }
         }
+
+
     }
 }
-
